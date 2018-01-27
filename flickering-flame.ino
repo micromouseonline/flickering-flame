@@ -27,16 +27,16 @@
 class Flame
 {
   public:
-    void setup(int pin, int alpha = 32, int delay = 100);
+    void setup(int pin, int alpha = 20, int delay = 100);
     void flicker();
 
   private:
     int _pin;
     int _brightness = 0;  // soft start
     int _oldBrightness = 0;
-    int _updateDelay = 100;
+    int _updateDelay;
     unsigned long _nextUpdate;
-    int _alpha = 20; // filter coefficient (0..100). Low means slow changes
+    int _alpha; // filter coefficient (0..100). Low means slow changes
 };
 
 
@@ -66,15 +66,12 @@ Flame flame3;
 Flame flame5;
 Flame flame6;
 
-#define LED 10
-
 void setup() {
   flame10.setup(10,15);
   flame11.setup(11,10);
   flame3.setup(3,20);
   flame5.setup(5,50);
   flame6.setup(6,30);
-  
 }
 
 // the loop function runs over and over again forever
@@ -84,5 +81,4 @@ void loop() {
   flame3.flicker();
   flame5.flicker();
   flame6.flicker();
-  
 }
